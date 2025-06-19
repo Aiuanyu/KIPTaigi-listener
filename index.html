@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF MP3 播放器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>PDF MP3 播放器</h1>
+
+        <div class="controls">
+            <p>請選擇一个本機 PDF 檔案，抑是貼上 PDF 網址：</p>
+            <input type="file" id="file-input" accept="application/pdf">
+            <span>抑是</span>
+            <input type="text" id="url-input" placeholder="請佇遮貼上 PDF 網址">
+            <button id="load-url-btn">載入網址</button>
+        </div>
+
+        <audio id="audio-player" controls src=""></audio>
+
+        <div id="pdf-viewer">
+            <div id="loader" class="hidden">載入中...</div>
+            <div id="pdf-container"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+
+    <footer>
+        <p>
+            版本：v0.5 20250619<br>
+            開發者：<a href="https://aiuanyu.net/" target="_blank" rel="noopener noreferrer">愛灣語江律師 aiuanyu.net</a><br>
+            Made with LOVE
+        </p>
+    </footer>
+
+</body>
+</html>

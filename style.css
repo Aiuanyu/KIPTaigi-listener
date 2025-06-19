@@ -1,0 +1,122 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #1a1a1a;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.controls p {
+    margin: 0;
+    width: 100%;
+}
+
+.controls input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.controls button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+}
+
+#audio-player {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#pdf-viewer {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    min-height: 500px;
+    position: relative; /* 重要：予連結定位 */
+}
+
+#pdf-container {
+    position: relative; /* 重要：予連結定位 */
+}
+
+#pdf-container canvas {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.link-overlay {
+    position: absolute;
+    cursor: pointer;
+    /* border: 1px dashed rgba(255, 0, 0, 0.5);  /* 若想欲看著連結範圍，會使開這行 */
+}
+
+.hidden {
+    display: none;
+}
+
+#loader {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2em;
+    color: #888;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #777;
+}
+
+footer p {
+    margin: 5px 0;
+}
