@@ -24,42 +24,31 @@ h1 {
     margin-bottom: 20px;
 }
 
-.controls {
+/* 新增：下拉選單 ê 樣式 */
+.pdf-selector {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 20px;
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 5px;
 }
 
-.controls p {
-    margin: 0;
-    width: 100%;
+.pdf-selector label {
+    font-weight: 500;
 }
 
-.controls input[type="text"] {
-    flex-grow: 1;
-    padding: 8px;
+.pdf-selector select {
+    font-size: 1em;
+    padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    min-width: 250px;
 }
 
-.controls button {
-    padding: 8px 15px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.controls button:hover {
-    background-color: #0056b3;
-}
+/* 【已刪除】舊 ê .controls 相關樣式攏提掉矣 */
 
 #audio-player {
     width: 100%;
@@ -94,7 +83,7 @@ h1 {
 .link-overlay {
     position: absolute;
     cursor: pointer;
-    /* border: 1px dashed rgba(255, 0, 0, 0.5);  /* 若想欲看著連結範圍，會使開這行 */
+    /* border: 1px dashed rgba(255, 0, 0, 0.5); */ /* 若想欲看著連結範圍，會使開這行 */
 }
 
 .hidden {

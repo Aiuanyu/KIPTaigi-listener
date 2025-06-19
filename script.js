@@ -1,44 +1,30 @@
-// 設定 PDF.js worker ê 路徑，這是 library 規定 ê (已更新連結)
+// 設定 PDF.js worker ê 路徑，這是 library 規定 ê
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`;
 
 // 揣著 HTML 內底 ê 元件
-const fileInput = document.getElementById('file-input');
-const urlInput = document.getElementById('url-input');
-const loadUrlBtn = document.getElementById('load-url-btn');
+const pdfSelect = document.getElementById('pdf-select'); // 新增：揣著下拉選單
 const audioPlayer = document.getElementById('audio-player');
 const pdfContainer = document.getElementById('pdf-container');
 const loader = document.getElementById('loader');
 
-// 監聽「載入網址」按鈕 ê 點擊事件
-loadUrlBtn.addEventListener('click', () => {
-    const url = urlInput.value.trim();
-    if (url) {
-        loadPdf(url);
-    } else {
-        alert('請輸入有效 ê PDF 網址');
+// 【新功能】監聽下拉選單 ê 變動事件
+pdfSelect.addEventListener('change', (event) => {
+    const selectedFile = event.target.value;
+    if (selectedFile) {
+        // 組合出完整 ê 檔案路徑
+        const pdfPath = `res/${selectedFile}`;
+        loadPdf(pdfPath);
     }
 });
 
-// 監聽檔案選擇器 ê 變動事件
-fileInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    if (file && file.type === 'application/pdf') {
-        const fileReader = new FileReader();
-        fileReader.onload = (e) => {
-            const typedarray = new Uint8Array(e.target.result);
-            loadPdf(typedarray);
-        };
-        fileReader.readAsArrayBuffer(file);
-    } else if (file) {
-        alert('請選擇一个 PDF 檔案');
-    }
-});
+// 【已刪除】舊 ê fileInput 佮 urlInput 相關 ê 事件監聽攏提掉矣
 
 // 主要 ê 載入 PDF 函式
 async function loadPdf(source) {
     // 清空舊內容並顯示載入中
     pdfContainer.innerHTML = '';
     loader.classList.remove('hidden');
+    audioPlayer.src = ''; // 換新檔案 ê 時陣，清掉舊 ê 音訊
 
     try {
         const pdf = await pdfjsLib.getDocument(source).promise;
@@ -59,7 +45,7 @@ async function loadPdf(source) {
     }
 }
 
-// 顯示單一頁面 ê 函式
+// 顯示單一頁面 ê 函式 (這个函式內容無變)
 async function renderPage(page, container) {
     const scale = 1.5;
     const viewport = page.getViewport({ scale });
@@ -119,7 +105,6 @@ async function renderPage(page, container) {
                 console.log('準備播放:', mp3Url);
                 audioPlayer.src = mp3Url;
                 audioPlayer.play();
-                // window.scrollTo({ top: 0, behavior: 'smooth' }); // 自動捲到上頂頭看著播放器
             });
             
             // 共這个透明 ê div 加到每一頁 ê 容器內
