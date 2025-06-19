@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF MP3 播放器</title>
+    <title>「咱來學臺灣台語」MP3 放送器</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8P5QYZYKR0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8P5QYZYKR0');
+</script>
 <body>
 
     <div class="container">
-        <h1>PDF MP3 播放器</h1>
+        <h1>「咱來學臺灣台語」MP3 放送器</h1>
 
         <div class="pdf-selector">
-            <label for="pdf-select">請選擇課文：</label>
+            <label for="pdf-select">請揀課文：</label>
             <select id="pdf-select">
-                <option value="" disabled selected>— 請佇遮選擇 —</option>
+                <option value="" disabled selected>— 請佇遮揀 —</option>
                 <option value="01拼音.pdf">01 拼音</option>
                 <option value="02語詞1.pdf">02 語詞 (1)</option>
                 <option value="02語詞2.pdf">02 語詞 (2)</option>
@@ -28,14 +37,12 @@
         <audio id="audio-player" controls src=""></audio>
 
         <div id="pdf-viewer">
-            <div id="loader" class="hidden">載入中...</div>
+            <div id="loader" class="hidden">當咧載入...</div>
             <div id="pdf-container"></div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="script.js"></script>
-
+    <button id="back-to-top-btn" title="轉去頁頂" aria-label="轉去頁頂">↑</button> <!-- 新增 ê 轉去頁頂撳鈕 -->
     <footer>
         <p>
             版本：v0.6 20250619<br>
@@ -43,6 +50,9 @@
             Made with LOVE
         </p>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

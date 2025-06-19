@@ -6,6 +6,7 @@ const pdfSelect = document.getElementById('pdf-select'); // 新增：揣著下�
 const audioPlayer = document.getElementById('audio-player');
 const pdfContainer = document.getElementById('pdf-container');
 const loader = document.getElementById('loader');
+const pdfViewer = document.getElementById('pdf-viewer'); // 【新】揣著 PDF viewer 元素
 
 // 【新功能】監聽下拉選單 ê 變動事件
 pdfSelect.addEventListener('change', (event) => {
@@ -102,7 +103,7 @@ async function renderPage(page, container) {
             linkOverlay.addEventListener('click', (e) => {
                 e.preventDefault(); // 防止預設行為 (開新分頁)
                 const mp3Url = e.currentTarget.dataset.mp3Url;
-                console.log('準備播放:', mp3Url);
+                console.log('準備放送:', mp3Url);
                 audioPlayer.src = mp3Url;
                 audioPlayer.play();
             });
@@ -111,4 +112,30 @@ async function renderPage(page, container) {
             pageContainer.appendChild(linkOverlay);
         }
     });
+}
+
+// 【新功能】轉去頁頂 ê 撳鈕
+const backToTopBtn = document.getElementById('back-to-top-btn');
+
+if (backToTopBtn && pdfViewer) { // 加一个檢查，確保 backToTopBtn佮pdfViewer攏有揣著
+    // 監聽 pdfViewer ê 捲動事件，決定敢欲顯示「轉去頁頂」撳鈕
+    pdfViewer.addEventListener('scroll', () => {
+        // 捲超過 200px 才顯示
+        if (pdfViewer.scrollTop > 200) { // 改用 pdfViewer.scrollTop
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    // 監聽「轉去頁頂」撳鈕 ê 點擊事件，共 pdfViewer 絞去頂頭
+    backToTopBtn.addEventListener('click', () => {
+        pdfViewer.scrollTo({ // 改用 pdfViewer.scrollTo
+            top: 0,
+            behavior: 'smooth' // 平順咁捲上去
+        });
+    });
+} else {
+    if (!pdfViewer) console.error('錯誤：揣無 id="pdf-viewer" ê 元素。');
+    if (!backToTopBtn) console.error('錯誤：揣無 id="back-to-top-btn" ê 元素。');
 }
