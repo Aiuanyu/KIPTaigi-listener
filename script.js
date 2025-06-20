@@ -8,6 +8,10 @@ const pdfContainer = document.getElementById('pdf-container');
 const loader = document.getElementById('loader');
 const pdfViewer = document.getElementById('pdf-viewer'); // 【新】揣著 PDF viewer 元素
 
+const screenWidthWarning = document.getElementById('screen-width-warning'); // 【新】螢幕闊度提醒元件
+const closeWarningBtn = document.getElementById('close-warning-btn'); // 【新】關閉提醒鈕仔
+const NARROW_SCREEN_THRESHOLD = 768; // 設定隘螢幕 ê 臨界值 (單位：像素)
+
 // 【新功能】監聽下拉選單 ê 變動事件
 pdfSelect.addEventListener('change', (event) => {
     const selectedFile = event.target.value;
@@ -138,4 +142,29 @@ if (backToTopBtn && pdfViewer) { // 加一个檢查，確保 backToTopBtn佮pdfV
 } else {
     if (!pdfViewer) console.error('錯誤：揣無 id="pdf-viewer" ê 元素。');
     if (!backToTopBtn) console.error('錯誤：揣無 id="back-to-top-btn" ê 元素。');
+}
+
+// 【新功能】檢查螢幕闊度並顯示/隱藏提醒
+function checkScreenWidth() {
+    if (window.innerWidth < NARROW_SCREEN_THRESHOLD) {
+        // 若使用者佇這个 session 內底猶未關過提醒，就顯示
+        if (sessionStorage.getItem('screenWidthWarningClosed') !== 'true') {
+            screenWidthWarning.classList.remove('hidden');
+        }
+    } else {
+        screenWidthWarning.classList.add('hidden');
+    }
+}
+
+if (screenWidthWarning && closeWarningBtn) {
+    // 一開始就檢查一遍
+    checkScreenWidth();
+    // 螢幕大細改變 ê 時陣嘛檢查
+    window.addEventListener('resize', checkScreenWidth);
+
+    // 關閉鈕仔 ê 功能
+    closeWarningBtn.addEventListener('click', () => {
+        screenWidthWarning.classList.add('hidden');
+        sessionStorage.setItem('screenWidthWarningClosed', 'true'); // 記錄起來，這个 session 內底莫閣顯示
+    });
 }

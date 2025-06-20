@@ -98,6 +98,37 @@ h1 {
     color: #888;
 }
 
+/* 螢幕闊度提醒訊息樣式 */
+#screen-width-warning {
+    background-color: #fff3cd; /* 淡黃色背景 */
+    color: #856404; /* 深黃/棕色文字 */
+    padding: 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 8px; /* 配合 .container ê 圓角 */
+    margin-bottom: 20px; /* 佮後壁 ê H1 有淡薄仔距離 */
+    text-align: left;
+    position: relative; /* 予關閉鈕仔定位用 */
+    z-index: 2000; /* 確保佇上頂層 */
+}
+
+#screen-width-warning p {
+    margin: 0;
+    padding-right: 30px; /* 留空間予關閉鈕仔 */
+}
+
+#close-warning-btn {
+    position: absolute;
+    top: 10px; /* 調整垂直位置 */
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 22px; /* 加大淡薄 */
+    font-weight: bold;
+    color: #856404;
+    cursor: pointer;
+    line-height: 1; /* 避免影響懸度 */
+}
+
 footer {
     text-align: center;
     margin-top: 40px;
